@@ -1,6 +1,9 @@
 // Next.js API route support: https://nextjs.org/docs/api-routes/introduction
 import dbConnect from "../../../utils/mongodb"
 import Tutor from "../../../models/Tutor";
+import bcrypt from 'bcryptjs'
+//TODO : install bcryptjs library
+//TODO : handle form validation from the frontend ie password === confirmPassword
 
 export default async function handler(req, res) {
 
@@ -11,15 +14,20 @@ export default async function handler(req, res) {
    //Add a student to the database
     if(method === "POST"){
 
+        const {password} = req.body;
         try {
-            const requestBody = req.body;
-            const tutor = await Tutor.create(requestBody);
-            res.status(201).json(tutor);
+            // generating the hash of the password
+                const salt = bcrypt.genSaltSync(10);
+                const hashedPassword = bcrypt.hashSync(password, salt);
+               // creating the user object that will be used for authentication
+               const tutor = await Tutor.create({
+                   ...req.body,password: hashedPassword
+               })
+               return res.status(200).Json({"Tutor":tutor});
             
-        } catch (error) {
-            console.log("error creating Tutor")
-            res.status(error.status).json(error.message);
-        }
+            } catch (error) {
+            res.status(error.status).json(error.message)
+            }
     }
 
     // Fetch all the students
