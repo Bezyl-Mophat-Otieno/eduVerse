@@ -1,4 +1,4 @@
-import Student from "@/models/Student";
+import Tutor from "@/models/Tutor";
 import dbConnect from "@/utils/mongodb";
 
 export  default async function handler  (req,res){
@@ -12,9 +12,9 @@ export  default async function handler  (req,res){
    if(method === "PUT"){
      try {
 
-        const updatedStudent = await Student.findByIdAndUpdate(id,req.body,{new:true,runValidators:true})
+        const updatedTutor = await Tutor.findByIdAndUpdate(id,req.body,{new:true,runValidators:true})
 
-        res.status(200).json(updatedStudent)
+        res.status(200).json(updatedTutor)
         
      } catch (error) {
         res.status(error.status).json({message:error.message})
@@ -26,8 +26,8 @@ export  default async function handler  (req,res){
    // getting single  Student using id
    if(method === "GET"){
     try {
-        const student = await Student.findById(id);
-        res.status(200).json(student)
+        const tutor = await Tutor.findById(id);
+        res.status(200).json(tutor)
         
     } catch (error) {
         res.status(error.statusCode).json(error.message)   
@@ -37,14 +37,11 @@ export  default async function handler  (req,res){
 
    // delete an Student from the database
       if(method === "DELETE"){
-
-
         try {
-
-          await Student.findByIdAndDelete(id)
-          res.status(200).json("Student deleted successfully")
+            await Tutor.findByIdAndRemove(id)
+            res.status(200).json("Tutor deleted successfully")
         } catch (error) {
-            res.status(error.statusCode).json(error.message)
+            res.status(500).json("error occured")
             
         }
         
