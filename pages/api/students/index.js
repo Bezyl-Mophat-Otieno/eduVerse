@@ -1,7 +1,6 @@
 // Next.js API route support: https://nextjs.org/docs/api-routes/introduction
 import dbConnect from "../../../utils/mongodb"
-import Student from "../../../models/Student";
-import { Student } from '@/models/Student';
+import Student from '../../../models/Student'
 import bcrypt from 'bcryptjs'
 
 
@@ -17,22 +16,21 @@ export default async function handler(req, res) {
    //Add a student to the database
    if(method === "POST"){
 
-    const {password} = req.body;
         try {
             // generating the hash of the password
                 const salt = bcrypt.genSaltSync(10);
-                const hashedPassword = bcrypt.hashSync(password, salt);
+                const hashedPassword = bcrypt.hashSync(req.body.password, salt);
+
                // creating the user object that will be used for authentication
-               const student = await Student.create({
-                   ...req.body,password: hashedPassword
-               })
-               return res.status(200).send("Student created successfully");
+
+               const newReqBody = { ...req.body,password:hashedPassword}
+               const student = await Student.create(newReqBody)
+
+               return res.status(201).json("Student created successfully");
             
             } catch (error) {
-            res.status(error.status).json(error.message)
+            res.status(error.status).json("Something went wrong")
             }
-
-      
    }
     
     
