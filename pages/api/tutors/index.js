@@ -2,9 +2,6 @@
 import dbConnect from "../../../utils/mongodb"
 import bcrypt from 'bcryptjs'
 import Tutor from '../../../models/Tutor'
-//TODO : install bcryptjs library
-//TODO : handle form validation from the frontend ie password === confirmPassword
-
 export default async function handler(req, res) {
 
     const {method} = req;

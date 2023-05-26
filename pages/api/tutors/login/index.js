@@ -4,7 +4,6 @@ import jwt from 'jsonwebtoken'
 import cookie from 'cookie'
 import bcrypt from 'bcryptjs'
 
-//TODO : Install jsonwebtoken for storing user sessions in cookies
 export default async function handler(req, res) {
     // Database connection
     const {method} = req;
