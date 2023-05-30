@@ -4,6 +4,9 @@ import bcrypt from 'bcryptjs'
 import Tutor from '../../../models/Tutor'
 export default async function handler(req, res) {
 
+//TODO: Install Yup for telephone validation
+
+
     const {method} = req;
     // Creating a connection
     await dbConnect();

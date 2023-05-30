@@ -4,8 +4,8 @@ import Student from '../../../models/Student'
 import bcrypt from 'bcryptjs'
 
 
-//TODO:Install bcryptjs library
 //Todo: Handle form validation in the frontend ie password should be equal to Confirm password
+//TODO: Install Yup for telephone validation
 
 export default async function handler(req, res) {
 

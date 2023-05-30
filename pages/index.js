@@ -6,6 +6,9 @@ export default function Home() {
         <title>Pizza Restaurant in Newyork</title>
         <meta name="description" content="eduVerse" />
         <link rel="icon" href="/favicon.ico" />
+        <link
+      href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700"
+      rel="stylesheet"/>
       </Head>
       <h2>Hello</h2>
     </div>
