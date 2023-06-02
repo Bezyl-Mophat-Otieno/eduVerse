@@ -1,0 +1,7 @@
+.mynavbar a{ 
+    color:black
+
+}
+.mynavbar a:hover{
+    color: rgba(5, 5, 138, 0.445);
+}

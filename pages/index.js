@@ -1,16 +1,21 @@
 import Head from "next/head";
+import Nav from "@/components/Nav";
+import Banner from "@/components/Banner";
+import Services from "@/components/Services";
+import Recommended from "@/components/Recommended";
 export default function Home() {
   return (
-    <div className={styles.container}>
+    <div >
       <Head>
-        <title>Pizza Restaurant in Newyork</title>
+        <title>eduVerse-Home</title>
         <meta name="description" content="eduVerse" />
         <link rel="icon" href="/favicon.ico" />
-        <link
-      href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700"
-      rel="stylesheet"/>
       </Head>
-      <h2>Hello</h2>
+      <Nav/>
+      <Banner/>
+      <Services/>
+      <Recommended/>
     </div>
+    
   );
 }
