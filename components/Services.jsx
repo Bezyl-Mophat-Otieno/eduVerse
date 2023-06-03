@@ -8,6 +8,7 @@ function Services() {
             <div class="inner">
                 <a href="#" class="image"><img src="images/pic01.jpg" alt="" /></a>
                 <div class="content">
+                <h2 class="major mb-5 text-center text-secondary-emphasis ">What we offer here at eduVerse</h2>
                     <h2 class="major">Offline Realtime Class Updates</h2>
                     <p>Lorem ipsum dolor sit amet, etiam lorem adipiscing elit. Cras turpis ante, nullam sit amet turpis non, sollicitudin posuere urna. Mauris id tellus arcu. Nunc vehicula id nulla dignissim dapibus. Nullam ultrices, neque et faucibus viverra, ex nulla cursus.</p>
                     <a href="#" class="special">Learn more</a>
@@ -21,7 +22,7 @@ function Services() {
                 <div class="content">
                     <h2 class="major"> Anonymous Suggestion box to the administration </h2>
                     <p>Lorem ipsum dolor sit amet, etiam lorem adipiscing elit. Cras turpis ante, nullam sit amet turpis non, sollicitudin posuere urna. Mauris id tellus arcu. Nunc vehicula id nulla dignissim dapibus. Nullam ultrices, neque et faucibus viverra, ex nulla cursus.</p>
-                    <a href="#" class="special">Learn more</a>
+                    <a href="#" class="special">Learn more...</a>
                 </div>
             </div>
         </section>

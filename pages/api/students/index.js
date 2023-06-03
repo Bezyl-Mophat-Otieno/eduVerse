@@ -29,7 +29,7 @@ export default async function handler(req, res) {
                return res.status(201).json("Student created successfully");
             
             } catch (error) {
-            res.status(error.status).json("Something went wrong")
+            res.status(500).json(error.message)
             }
    }
     

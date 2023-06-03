@@ -10,7 +10,7 @@ export default async function handler(req, res) {
     const {method} = req;
     // Creating a connection
     await dbConnect();
-   //Add a student to the database
+   //Add a Tutor to the database
     if(method === "POST"){
 
         const {password} = req.body;
