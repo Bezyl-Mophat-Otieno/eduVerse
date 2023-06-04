@@ -4,6 +4,9 @@ import { useState } from 'react'
 import { useDispatch } from 'react-redux'
 import { loginStart , loginFailure , loginSuccess } from '@/redux/userSlice'
 import axios from 'axios'
+import signInImage from '../../../public/images/signin-image.jpg'
+import Image from 'next/image'
+
 function index() {
 
 
@@ -54,7 +57,7 @@ function index() {
                     </div>
             </div>
             <div className="signup-image mt-5 col-6">
-                <figure><img src="images/signin-image.jpg" alt="sing up image"/></figure>
+                <figure><Image src={signInImage} alt='Sign in Image'  width={300} height={300}/> </figure>
                  <span className=' me-3'>Do not have an account ? </span> <Link href={'/register/student'}> <span className='text-primary'> Register</span></Link>
             </div>
         </div>

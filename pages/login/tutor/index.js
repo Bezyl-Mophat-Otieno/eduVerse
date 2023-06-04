@@ -3,6 +3,8 @@ import Link from 'next/link'
 import { useState } from 'react'
 import { useDispatch } from 'react-redux'
 import { loginStart , loginFailure , loginSuccess } from '@/redux/userSlice'
+import signInImage from '../../../public/images/signin-image.jpg'
+import Image from 'next/image'
 import axios from 'axios'
 function index() {
 
@@ -54,7 +56,7 @@ function index() {
                     </div>
             </div>
             <div className="signup-image mt-5 col-6">
-                <figure><img src="images/signin-image.jpg" alt="sign in Image"/></figure>
+                <figure> <Image src={signInImage} alt='Sign In Image' width={300} height={300}/> </figure>
                  <span className=' me-3'>Do not have an account ? </span> <Link href={'/register/tutor'}> <span className='text-primary'> Register</span></Link>
             </div>
         </div>

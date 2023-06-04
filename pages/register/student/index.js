@@ -3,6 +3,9 @@ import Link from 'next/link'
 import { useState } from 'react'
 import axios from 'axios'
 import styles from '../../../styles/Register.module.css'
+import signUpImage from '../../../public/images/signup-image.jpg'
+import Image from 'next/image'
+
 
 
 function index() {
@@ -73,7 +76,7 @@ function index() {
                     </div>
             </div>
             <div className="signup-image mt-5 col-6">
-                <figure><img src="images/signup-image.jpg" alt="sing up image"/></figure>
+                <figure><Image src={signUpImage} width={300} height={300} alt='Sign Up Image'/></figure>
                 <span className=' me-3'>Already have  an account ? </span> <Link href={'/login/student'}> <span className='text-primary'>Login </span></Link>
             </div>
         </div>
