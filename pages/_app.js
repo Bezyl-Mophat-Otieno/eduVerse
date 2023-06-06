@@ -10,7 +10,7 @@ import store from '../redux/store'
 export default function App({ Component, pageProps }) {
 
   useEffect(()=>{
-    import("bootstrap/dist/js/bootstrap");
+    import("bootstrap/dist/js/bootstrap.bundle")
    },[])
   return (
       <>

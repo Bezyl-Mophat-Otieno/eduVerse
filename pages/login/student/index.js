@@ -6,14 +6,16 @@ import { loginStart , loginFailure , loginSuccess } from '@/redux/userSlice'
 import axios from 'axios'
 import signInImage from '../../../public/images/signin-image.jpg'
 import Image from 'next/image'
-
+import Alert from '@/components/Alert'
+import { useRouter } from 'next/router'
 function index() {
 
-
+    const router = useRouter()
     const [phone , setPhone] = useState("")
     const dispatch = useDispatch()
     const [password , setPassword] = useState("")
-    const [logError, setLogError ] = useState({})
+    const [error, setError ] = useState(false)
+    const [success, setSuccess ] = useState(false)
 
     const handleLogin =async (e)=>{
         e.target.preventDefault
@@ -23,12 +25,14 @@ function index() {
         try {
             dispatch(loginStart())
             const res = await axios.post('http://localhost:3000/api/students/login',requestBody)
-            console.log(res.data)
             dispatch(loginSuccess(res.data))
+            setSuccess(true)
+            router.push('/dashboard/student')
         } catch (error) {
             console.log(error)
-            setLogError({...logError,state:true,message:error.message})
             dispatch(loginFailure())
+            setError(true)
+            router.push()
         }
 
 
@@ -43,6 +47,9 @@ function index() {
     <div className="container">
         <div className="signup-content row">
             <div className="signup-form col-6">
+            {success &&   <Alert message={"Login Successfull"}  color={"alert-success"}/> }
+
+              {error &&  <Alert message={"An error occured , login not successfull"}  color={"alert-warning"}/>  }
                 <h2 className="form-title">Sign In</h2>
                     <div className="form-group">
                         <label for="name"><i className="zmdi zmdi-account material-icons-name"></i></label>

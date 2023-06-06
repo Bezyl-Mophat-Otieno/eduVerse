@@ -24,9 +24,6 @@ export default async function handler(req, res) {
                 const tutor = await Tutor.create(newReqBody)
 
                 res.status(201).json("Tutor created successfully")
-
-
-            
             } catch (error) {
             res.status(error.status).json("Something went wrong")
             }

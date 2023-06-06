@@ -11,7 +11,6 @@ export default function Home() {
         <meta name="description" content="eduVerse" />
         <link rel="icon" href="/favicon.ico" />
       </Head>
-      <Nav/>
       <Banner/>
       <Services/>
       <Recommended/>

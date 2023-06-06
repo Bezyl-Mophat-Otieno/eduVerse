@@ -13,8 +13,8 @@ function index() {
     const [phone, setPhone] = useState("")
     const [password, setPassword] = useState("")
     const [cPassword, setCPassword] = useState("")
-    const [logError,setLogError] = useState({})
-    const [success, setSuccess] = useState(false)
+    const [success, setSuccess] = useState()
+    const [error, setError ] = useState(false)
 
     const handleRegister = async (e)=>{
     e.preventDefault()
@@ -26,12 +26,10 @@ function index() {
         try {
     
             const requestBody = {name,phone,password}
-            console.log(requestBody)
             const res = await axios.post('http://localhost:3000/api/tutors',requestBody)
             setSuccess(true)
-            console.log(res)
         } catch (error) {
-            setLogError({...logError,state:true,message:error.message})
+            setError(true)
         }
         }
 
@@ -48,6 +46,8 @@ function index() {
     <div className="container">
         <div className="signup-content row">
             <div className="signup-form col-6">
+            {success && <Alert message={"Tutor  was added successfully"}  color={"alert-success"}/>}
+             {error && <Alert message={"Something went wrong , Tutor was not registered successfully"}  color={"alert-warning"}/> }
                 <h2 className="form-title">Sign up</h2>
                     <div className="form-group">
                         <label htmlFor="name"><i className="zmdi zmdi-account material-icons-name"></i></label>
@@ -55,7 +55,7 @@ function index() {
                     </div>
                     <div className="form-group">
                         <label htmlFor="phone"><i className="zmdi zmdi-lock"></i></label>
-                        <input type="text" name="phone" id="phone" placeholder="Enter Phone Number htmlFormat[+254]" onChange={(e)=>setPhone(e.target.value)} />
+                        <input type="text" name="phone" id="phone" placeholder="Enter Phone Number Format[+254]" onChange={(e)=>setPhone(e.target.value)} />
                     </div>
                     <div className="form-group">
                         <label htmlFor="pass"><i className="zmdi zmdi-lock"></i></label>
@@ -71,7 +71,7 @@ function index() {
             </div>
             <div className="signup-image mt-5 col-6 d-flex flex-column">
                 <figure><Image src={signUpImage}  width={300} height={300} /></figure>
-                <span className=' me-3'>Already have  an account ? </span> <Link href={'/tutor/login'}> <span className='text-primary'>Login </span></Link>
+                <span className=' me-3'>Already have  an account ? </span> <Link href={'/login/tutor'}> <span className='text-primary'>Login </span></Link>
             </div>
         </div>
     </div>

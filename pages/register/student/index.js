@@ -5,6 +5,7 @@ import axios from 'axios'
 import styles from '../../../styles/Register.module.css'
 import signUpImage from '../../../public/images/signup-image.jpg'
 import Image from 'next/image'
+import Alert from '@/components/Alert'
 
 
 
@@ -15,8 +16,8 @@ function index() {
     const [password, setPassword] = useState("")
     const [cPassword, setCPassword] = useState("")
     const [logError,setLogError] = useState({})
-    const [success, setSuccess] = useState(false)
-    console.log(logError)
+    const [success, setSuccess] = useState()
+    const [error, setError ] = useState(false)
 
     const handleRegister = async (e)=>{
     e.preventDefault()
@@ -28,12 +29,13 @@ function index() {
         try {
     
             const requestBody = {name,reg,phone,password}
-            console.log(requestBody)
             const res = await axios.post('http://localhost:3000/api/students',requestBody)
             setSuccess(true)
-            console.log(res)
+            console.log("Student Created successfully")
         } catch (error) {
+
             setLogError({...logError,state:true,message:error.message})
+            setError(true)
         }
         }
 
@@ -50,6 +52,8 @@ function index() {
     <div className="container">
         <div className="signup-content row">
             <div className="signup-form col-6">
+                {success && <Alert message={"Student was created successfully"}  color={"alert-success"}/>}
+                { error &&<Alert message={"Something went wrong , Student was not registered successfully"}  color={"alert-warning"}/>}
                 <h2 className="form-title">Sign up</h2>
                     <div className="form-group">
                         <label htmlFor="name"><i className="zmdi zmdi-account material-icons-name"></i></label>
@@ -61,7 +65,7 @@ function index() {
                     </div>
                     <div className="form-group">
                         <label htmlFor="phone"><i className="zmdi zmdi-lock"></i></label>
-                        <input type="text" name="phone" id="phone" placeholder="Enter Phone Number htmlFormat[+254]" onChange={(e)=>setPhone(e.target.value)} />
+                        <input type="text" name="phone" id="phone" placeholder="Enter Phone Number Format[+254]" onChange={(e)=>setPhone(e.target.value)} />
                     </div>
                     <div className="form-group">
                         <label htmlFor="pass"><i className="zmdi zmdi-lock"></i></label>

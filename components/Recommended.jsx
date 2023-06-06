@@ -1,4 +1,5 @@
 import React from 'react'
+import VideoCard from './VideoCard'
 
 function Recommended() {
   return (
@@ -7,32 +8,9 @@ function Recommended() {
 <section id="four" class="wrapper alt style1">
             <div class="inner">
                 <h2 class="major">Recommended Tutorials from Students and Tutors from all walks of expertise</h2>
-                <p>Cras mattis ante fermentum, malesuada neque vitae, eleifend erat. Phasellus non pulvinar erat. Fusce tincidunt, nisl eget mattis egestas, purus ipsum consequat orci, sit amet lobortis lorem lacus in tellus. Sed ac elementum arcu. Quisque placerat auctor laoreet.</p>
+                <p>Furthermore, eduVerse serves as a comprehensive platform for both students and tutors to upload and share tutorials from different topics and expertise. We believe that knowledge should be accessible and shared freely, and our platform enables users to contribute to the educational community by uploading their tutorials, study materials, and educational resources. Whether you are a student who wants to share a helpful study guide or a tutor who wishes to showcase your expertise through video tutorials, eduVerse provides a space for you to inspire and empower others with your knowledge.</p>
                 <section class="features">
-                    <article>
-                        <a href="#" class="image"><img src="images/pic04.jpg" alt="" /></a>
-                        <h3 class="major">Sed feugiat lorem</h3>
-                        <p>Lorem ipsum dolor sit amet, consectetur adipiscing vehicula id nulla dignissim dapibus ultrices.</p>
-                        <a href="#" class="special">Learn more</a>
-                    </article>
-                    <article>
-                        <a href="#" class="image"><img src="images/pic05.jpg" alt="" /></a>
-                        <h3 class="major">Nisl placerat</h3>
-                        <p>Lorem ipsum dolor sit amet, consectetur adipiscing vehicula id nulla dignissim dapibus ultrices.</p>
-                        <a href="#" class="special">Learn more</a>
-                    </article>
-                    <article>
-                        <a href="#" class="image"><img src="images/pic06.jpg" alt="" /></a>
-                        <h3 class="major">Ante fermentum</h3>
-                        <p>Lorem ipsum dolor sit amet, consectetur adipiscing vehicula id nulla dignissim dapibus ultrices.</p>
-                        <a href="#" class="special">Learn more</a>
-                    </article>
-                    <article>
-                        <a href="#" class="image"><img src="images/pic07.jpg" alt="" /></a>
-                        <h3 class="major">Fusce consequat</h3>
-                        <p>Lorem ipsum dolor sit amet, consectetur adipiscing vehicula id nulla dignissim dapibus ultrices.</p>
-                        <a href="#" class="special">Learn more</a>
-                    </article>
+                <VideoCard/>
                 </section>
                 <ul class="actions">
                     <li><a href="#" class="button">Browse All</a></li>

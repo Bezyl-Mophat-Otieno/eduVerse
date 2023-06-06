@@ -24,10 +24,12 @@ function Banner() {
     <div class="inner">
         <div class="logo"><span class="icon fa-gem">eV</span></div>
         <h2 className=''>eduVerse</h2>
-        <p>Service to comrades is service next to God<a href="http://html5up.net"> ~ Ceo.eduVerse LTD</a></p>
+        <p>
+        Welcome to eduVerse, the ultimate web application designed to revolutionize the way students and tutors connect, collaborate, and learn. With a comprehensive set of features, eduVerse aims to provide a seamless and immersive educational experience for users of all ages and backgrounds.
+        </p>
         <div className='d-flex justify-content-between align-items-center mt-5'>
         { !choice && <>
-        <div className='text-center me-5'>Are you a student ? </div>
+        <div className='text-center me-5'>Do you want to participate as a student ? </div>
          <button onClick={()=>handleStudent()}>Yes</button> 
          <button onClick={()=>handleTutor()}>No</button>
         </>
