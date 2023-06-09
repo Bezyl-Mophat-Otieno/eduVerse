@@ -16,8 +16,8 @@ function index() {
     const [password, setPassword] = useState("")
     const [cPassword, setCPassword] = useState("")
     const [logError,setLogError] = useState({})
-    const [success, setSuccess] = useState()
-    const [error, setError ] = useState(false)
+    const [success, setSuccess] = useState(null)
+    const [error, setError ] = useState(null)
 
     const handleRegister = async (e)=>{
     e.preventDefault()

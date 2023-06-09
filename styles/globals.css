@@ -4256,6 +4256,7 @@ input, select, textarea {
 
 	}
 
+
 	@media screen and (max-width: 360px) {
 
 		#footer .inner {
@@ -4269,12 +4270,12 @@ input, select, textarea {
 		height:auto;
 
 	}
-	.container{
+	/* .container{
 
 		width:auto;
 		padding:20px;
 		
-	}
+	} */
 .text-primary{
 	color:blue;
 }

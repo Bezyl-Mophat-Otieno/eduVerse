@@ -2,7 +2,7 @@ import mongoose from "mongoose";
 const courseSchema = new mongoose.Schema({
     tutor:{
         type:String,
-        required:[true,"please provide tutor's Id"],
+        // required:[true,"please provide tutor's Id"],
     },
     title : {
         type:String,
@@ -15,7 +15,7 @@ const courseSchema = new mongoose.Schema({
         required:[true,"please provide course description"],
     },
     content:{
-        type:String,
+        type:[String],
     },
     tutorials:{
         type:[String],

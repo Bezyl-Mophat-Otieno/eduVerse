@@ -6,9 +6,11 @@ import { loginStart , loginFailure , loginSuccess } from '@/redux/userSlice'
 import signInImage from '../../../public/images/signin-image.jpg'
 import Image from 'next/image'
 import axios from 'axios'
+import Alert from '@/components/Alert'
+import { useRouter } from 'next/router'
 function index() {
 
-
+    const router = useRouter()
     const [phone , setPhone] = useState("")
     const dispatch = useDispatch()
     const [password , setPassword] = useState("")
@@ -23,13 +25,16 @@ function index() {
         try {
             dispatch(loginStart())
             const res = await axios.post('http://localhost:3000/api/tutors/login',requestBody)
-            console.log(res.data)
+            console.log("Success")
             dispatch(loginSuccess(res.data))
             setSuccess(true)
+            setError(false)
+            router.push('/dashboard/tutor')
         } catch (error) {
             console.log(error)
             dispatch(loginFailure())
             setError(true)
+            setSuccess(false)
         }
 
 
@@ -45,7 +50,7 @@ function index() {
         <div className="signup-content row">
             <div className="signup-form col-6">
             {success && <Alert message={"Login Successfull"}  color={"alert-success"}/>}
-            {error && <Alert message={"Login Successfull"}  color={"alert-success"}/>}
+            {error && <Alert message={"An Error Occured , Login failed "}  color={"alert-warning"}/>}
 
                 <h2 className="form-title">Sign In</h2>
                     <div className="form-group">
