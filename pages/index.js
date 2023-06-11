@@ -5,8 +5,10 @@ import Services from "@/components/Services";
 import Recommended from "@/components/Recommended";
 import TutorDashNav from "@/components/TutorDashNav";
 import MainNav from "@/components/MainNav";
+import { useSelector } from "react-redux";
 
 export default function Home() {
+const {currentUser} = useSelector(state=>state.user)
   return (
     <div >
       <Head>
@@ -14,8 +16,8 @@ export default function Home() {
         <meta name="description" content="eduVerse" />
         <link rel="icon" href="/favicon.ico" />
       </Head>
-      <MainNav/>
-      <Banner/>
+      <MainNav user={currentUser}/>
+      <Banner user={currentUser} />
       <Services/>
       <Recommended/>
     </div>

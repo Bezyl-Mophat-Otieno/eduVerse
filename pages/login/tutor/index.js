@@ -3,6 +3,7 @@ import Link from 'next/link'
 import { useState } from 'react'
 import { useDispatch } from 'react-redux'
 import { loginStart , loginFailure , loginSuccess } from '@/redux/userSlice'
+import { useSelector } from 'react-redux'
 import signInImage from '../../../public/images/signin-image.jpg'
 import Image from 'next/image'
 import axios from 'axios'
@@ -25,7 +26,6 @@ function index() {
         try {
             dispatch(loginStart())
             const res = await axios.post('http://localhost:3000/api/tutors/login',requestBody)
-            console.log("Success")
             dispatch(loginSuccess(res.data))
             setSuccess(true)
             setError(false)

@@ -5,13 +5,16 @@ import Script from "next/script";
 import { useEffect } from "react";
 import Head from "next/head";
 import { Provider } from "react-redux";
-import store from '../redux/store'
+import {store , persistor} from "../redux/store";
+
+import { PersistGate } from 'redux-persist/integration/react';
+
 
 export default function App({ Component, pageProps }) {
 
   useEffect(()=>{
     import("bootstrap/dist/js/bootstrap.bundle")
-   },[])
+  },[])
   return (
       <>
       <Head>
@@ -24,9 +27,11 @@ export default function App({ Component, pageProps }) {
         crossOrigin="anonymous"
       />
       <Provider store={store}>
+      <PersistGate loading={null} persistor={persistor}>
      <Layout>
       <Component {...pageProps} />
     </Layout>
+      </PersistGate>
       </Provider>
       </>
   )

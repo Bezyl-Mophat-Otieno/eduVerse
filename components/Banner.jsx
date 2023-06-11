@@ -4,7 +4,7 @@ import { useState } from 'react'
 
  
 
-function Banner() {
+function Banner({user}) {
   const [role,setRole] = useState(false)
   const [choice,setChoice] = useState(false)
   const handleStudent = ()=>{
@@ -28,7 +28,7 @@ function Banner() {
         Welcome to eduVerse, the ultimate web application designed to revolutionize the way students and tutors connect, collaborate, and learn. With a comprehensive set of features, eduVerse aims to provide a seamless and immersive educational experience for users of all ages and backgrounds.
         </p>
         <div className='d-flex justify-content-between align-items-center mt-5'>
-        { !choice && <>
+        { !user &&  !choice && <>
         <div className='text-center me-5'>Do you want to participate as a student ? </div>
          <button onClick={()=>handleStudent()}>Yes</button> 
          <button onClick={()=>handleTutor()}>No</button>
@@ -40,11 +40,13 @@ function Banner() {
         <div className=' btn-group d-flex justify-content-center align-content-center'>
         
         {role ? <>
+        <div className='btn text-primary text-center text-decoration-underline fs-4' onClick={()=>setChoice(false)}>Click here to switch your role  </div>
         <Link href={'/register/student'}> <button className='btn btn-outline-secondary me-5'  >Register</button> </Link>
         <Link href={'/login/student'}> <button className='btn btn-outline-secondary' >  Login   </button> </Link>
               </> 
         :
         <>
+        <div className='btn text-primary text-center text-decoration-underline fs-4' onClick={()=>setChoice(false)}>Click here to switch your role  </div>
         <Link href={'/register/tutor'}> <button className='btn btn-outline-secondary me-5'  >Register</button> </Link>
         <Link href={'/login/tutor'}> <button className='btn btn-outline-secondary' >  Login   </button> </Link> 
         </>

@@ -1,12 +1,30 @@
 import React from 'react'
 import Link from 'next/link'
+import { logout } from '@/redux/userSlice'
+import { useDispatch } from 'react-redux'
+import axios from 'axios'
 
-function MainNav({}) {
+function MainNav({user}) {
+  const dispatch = useDispatch()
+  const handleLogout = async () => {
+
+    try {
+      const res = await axios.get('http://localhost:3000/api/tutors/logout')
+      res.data && dispatch(logout())
+      console.log("You have successfully Loged out")
+    } catch (error) {
+      console.log(error.message)
+    }
+
+  }
   return (
 <div className=''>
 <nav className="navbar navbar-expand-lg navbar-dark " style={{backgroundColor:"#143566"}}>
   <div className="container-fluid">
-    <Link className="navbar-brand" href="/">eduVerse</Link>
+  <span className="text-secondary">  
+  {user? user.name:""}
+   </span>
+    <Link className="navbar-brand ms-4" href="/"> {user&&"Welcome to"} eduVerse</Link>
     <button className="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
       <span className="navbar-toggler-icon"></span>
     </button>
@@ -26,10 +44,9 @@ function MainNav({}) {
           <a className="nav-link disabled">Suggestion Box</a>
         </li>
       </ul>
-      <form className="d-flex">
-        <input className="form-control me-2 text-bg-dark" type="search" placeholder="Search" aria-label="Search"/>
-        <button className="btn btn-sm btn-outline-secondary" type="submit">Search</button>
-      </form>
+
+    {user ?  <Link href="" className='btn text-secondary' onClick={handleLogout}>Logout</Link> : "" } 
+     
     </div>
   </div>
 </nav>

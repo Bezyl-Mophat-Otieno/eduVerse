@@ -28,8 +28,7 @@ export default async function handler(req, res) {
             // store the access token in cookies 
             res.setHeader("Set-Cookie",cookie.serialize("token",process.env.ACCESS_TOKEN_SECRET,
             {maxAge:60*60,sameSite:"strict",path:"/"}))
-            res.status(200).json({message:"success"})
-            console.log("Login successful")
+            res.status(200).json(others)
         } catch (error) {
             res.status(500).json(error.message)
         }
