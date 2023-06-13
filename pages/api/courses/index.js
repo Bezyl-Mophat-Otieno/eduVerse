@@ -24,7 +24,7 @@ export default async function handler(req, res) {
 
     }
 
-    // Fetch all the students
+    // Fetch all the courses
     if(method === 'GET'){
         try {
              const courses = await Course.find();

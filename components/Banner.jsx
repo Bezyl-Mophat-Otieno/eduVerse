@@ -29,7 +29,7 @@ function Banner({user}) {
         </p>
         <div className='d-flex justify-content-between align-items-center mt-5'>
         { !user &&  !choice && <>
-        <div className='text-center me-5'>Do you want to participate as a student ? </div>
+        <div className='text-center me-5'> Choose a role , are you a student ? </div>
          <button onClick={()=>handleStudent()}>Yes</button> 
          <button onClick={()=>handleTutor()}>No</button>
         </>

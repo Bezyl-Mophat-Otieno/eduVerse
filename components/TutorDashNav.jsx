@@ -5,7 +5,7 @@ import { useDispatch } from 'react-redux'
 import axios from 'axios'
 import { useRouter } from 'next/router'
 
-function TutorDashNav({user}) {
+function TutorDashNav({user,setClose}) {
   const dispatch = useDispatch()
   const router = useRouter()
   const handleLogout = async () => {
@@ -25,9 +25,7 @@ function TutorDashNav({user}) {
 <div className=''>
 <nav className="navbar navbar-expand-lg navbar-dark " style={{backgroundColor:"#143566"}}>
   <div className="container-fluid">
-  <span className="text-secondary">  
-  {user? user.name:""}
-   </span>
+
     <Link className="navbar-brand ms-4" href="/"> {user&&"Welcome to"} eduVerse</Link>
     <button className="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
       <span className="navbar-toggler-icon"></span>
@@ -37,19 +35,28 @@ function TutorDashNav({user}) {
         <li className="nav-item">
           <Link className="nav-link " aria-current="page" href="/">Home</Link>
         </li>
-        <li className="nav-item">
-          <Link className="nav-link " aria-current="page" href="/about">About</Link>
-        </li>
-        <li className="nav-item">
-          <Link className="nav-link " aria-current="page" href="/contact">Contact Us</Link>
-        </li>
 
+
+
+        <li className="nav-item dropdown">
+          <Link className="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+            Courses
+          </Link>
+          <ul className="dropdown-menu" aria-labelledby="navbarDropdown">
+            <li><Link className="dropdown-item" href="#" onClick={()=>setClose(false)}>Add Course</Link></li>
+            
+            <li><Link className="dropdown-item" href={`/dashboard/tutor/courses/${user?user._id:""}`} >My Courses</Link></li>
+          </ul>
+        </li>
         <li className="nav-item">
-          <a className="nav-link disabled">Suggestion Box</a>
+          <Link href='#' className="nav-link disabled">Messages</Link>
         </li>
       </ul>
 
-    {user ?  <Link href="" className='btn text-secondary' onClick={handleLogout}>Logout</Link> : "" } 
+    {user ?  <span  className='btn text-secondary' onClick={handleLogout}>Logout</span> : "" } 
+    {
+         user ?  <span className="btn btn-outline-secondary"> {user.name} </span> : ""
+    }
      
     </div>
   </div>

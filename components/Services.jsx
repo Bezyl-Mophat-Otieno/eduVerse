@@ -42,7 +42,7 @@ function Services() {
 
         <section id="three" class="wrapper spotlight style3">
             <div class="inner">
-                <a href="#" class="image"><Image width={400} height={400} src="/images/expertise.jpg" alt="" /></a>
+                <a href="#" class="image"><Image width={300} height={300} src="/images/happy-learning.jpg" alt="" /></a>
                 <div class="content">
                     <h2 class="major">Free Learning Resources from Fellow Students and Tutors </h2>
                     <p>Furthermore, eduVerse serves as a comprehensive platform for both students and tutors to upload and share tutorials from different topics and expertise. We believe that knowledge should be accessible and shared freely, and our platform enables users to contribute to the educational community by uploading their tutorials, study materials, and educational resources. Whether you are a student who wants to share a helpful study guide or a tutor who wishes to showcase your expertise through video tutorials, eduVerse provides a space for you to inspire and empower others with your knowledge.</p>

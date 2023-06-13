@@ -13,16 +13,12 @@ import {
 } from "firebase/storage";
 
 
-const AddCourse = ({ setClose , user }) => {
-  const [video, setVideo] = useState(null);
+const AddNotes = ({ setClose , courseId}) => {
   const [title, setTitle] = useState(null);
-  const [desc, setDesc] = useState(null);
-  const [content, setContent] = useState(null)
-  const [videoPerc , setVideoPerc] = useState(0)
-  const [videoUrl , setVideoUrl] = useState("")
+  const [filePerc , setfilePerc] = useState(0)
+  const [fileUrl , setfileUrl] = useState("")
   const [success,setSuccess] = useState(null)
   const [error,setError] = useState(null)
-  const tutor = user._id;
 
   const uploadFile = (file, urlType) => {
     const storage = getStorage(app);
@@ -36,7 +32,7 @@ const AddCourse = ({ setClose , user }) => {
       (snapshot) => {
         const progress =
           (snapshot.bytesTransferred / snapshot.totalBytes) * 100;
-        urlType === "videoUrl" && setVideoPerc(Math.round(progress));
+        urlType === "fileUrl" && setfilePerc(Math.round(progress));
         switch (snapshot.state) {
           case "paused":
             console.log("Upload is paused");
@@ -51,23 +47,23 @@ const AddCourse = ({ setClose , user }) => {
       (error) => {},
       () => {
         getDownloadURL(uploadTask.snapshot.ref).then((downloadURL) => {
-          setVideoUrl(downloadURL);
+          setfileUrl(downloadURL);
         });
       }
     );
   };
 
   useEffect(() => {
-    video && uploadFile(video , "videoUrl");
-  }, [video]);
+    fileUrl && uploadFile(video , "fileUrl");
+  }, [fileUrl]); 
 
+  const demoUrl = 'http://test.com'
 
-const tutorials =videoUrl
   const handleCreate = async (e)=>{
     e.preventDefault();
-    const requestBody = {tutor,title,desc,content,tutorials}
+    const requestBody = {title,publications:demoUrl}
     try {
-      const res = await axios.post("http://localhost:3000/api/courses", requestBody)
+      const res = await axios.put(`http://localhost:3000/api/courses/${courseId}`, requestBody)
       setSuccess(true)
       setError(false)
     } catch (error) {
@@ -98,38 +94,17 @@ const tutorials =videoUrl
             placeholder="Enter Course Title"
           />
         </div>
+       
         <div className={styles.item}>
-          <label className={styles.label}>Enter Course Description</label>
-          <input
-          className={styles.desc}
-            type="text"
-            onChange={(e) => setDesc(e.target.value)}
-            placeholder="Enter Course Description..."
-          />
-        </div>
-
-        <div className={styles.item}>
-          <label className={styles.label}>Enter Course Content</label>
-          <textarea
-          className={styles.desc}
-
-
-            rows={4}
-            type="text"
-            onChange={(e) => setContent(e.target.value)}
-            placeholder="Enter Course Content"
-          />
-        </div>
-        <div className={styles.item}>
-          <label className={styles.label}>Add Course Tutorials</label>
-          <input type="file" accept='video/*' className={styles.choose} onChange={(e) => setVideo(e.target.files[0])} />
+          <label className={styles.label}>Add Course Notes </label>
+          <input type="file" accept='pdf/*' className={styles.choose} onChange={(e) => setFile(e.target.files)} />
         </div>
               { video && <button className='btn btn-dark  mb-3' >
-              {videoPerc}%
+              {filePerc}%
               </button>}
 
               { video ? (
-                videoPerc === 100 ? (
+                filePerc === 100 ? (
                       <button className='btn btn-primary mb-3 addCourse'  onClick={handleCreate} >
                       Create Course
                       </button>
@@ -147,4 +122,4 @@ const tutorials =videoUrl
   );
 };
 
-export default AddCourse;
+export default AddNotes;

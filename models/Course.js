@@ -23,6 +23,9 @@ const courseSchema = new mongoose.Schema({
     },
     students:{
         type:[String]
+    },
+    publications:{
+        type:[{title:{type:String,required:true},fileUrl:{type:String,required:true}}]
     }
 })
 

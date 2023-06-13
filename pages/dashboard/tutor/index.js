@@ -5,23 +5,19 @@ import { useSelector } from 'react-redux'
 
 import Videos from '../../../components/Videos'
 import Recommended from '../../../components/Recommended'
-import Add from '@/components/AddCourse'
+import AddCourse from '@/components/AddCourse'
 import {useState} from 'react'
 import { trusted } from 'mongoose'
  
 
 function index() {
   const {currentUser} = useSelector(state=>state.user)
-
-
-
-
   const[close , setClose ]=useState(true);
   return (
 
     <div className={styles.background}> 
     <TutorDashNav setClose={setClose} user={currentUser}/>
-    { !close && <Add setClose={setClose}/>}
+    { !close && <AddCourse user={currentUser} setClose={setClose}/>}
     <Recommended/>
 
 
@@ -32,3 +28,24 @@ function index() {
 }
 
 export default index
+
+export const getServerSideProps = async (context) => {
+  const myCookie = context.req?.cookies || "";
+  if (myCookie.token !== process.env.ACCESS_TOKEN_SECRET) {
+    return {
+      redirect: {
+        destination: "/login/tutor",
+        permanent: false,
+      },
+    };
+  }else{
+
+    return {
+      props:{
+        token:myCookie.token
+      }
+    }
+
+  }
+}
+
