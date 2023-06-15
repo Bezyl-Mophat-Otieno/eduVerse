@@ -40,15 +40,19 @@ function Banner({user}) {
         <div className=' btn-group d-flex justify-content-center align-content-center'>
         
         {role ? <>
-        <div className='btn text-primary text-center text-decoration-underline fs-4' onClick={()=>setChoice(false)}>Click here to switch your role  </div>
+        <div className='d-flex justify-content-between align-items-center mt-5'>
+        <div className='btn text-primary text-center text-decoration-underline fs-4 me-5' onClick={()=>setChoice(false)}>Click here to switch your role  </div>
         <Link href={'/register/student'}> <button className='btn btn-outline-secondary me-5'  >Register</button> </Link>
         <Link href={'/login/student'}> <button className='btn btn-outline-secondary' >  Login   </button> </Link>
+        </div>
               </> 
         :
         <>
-        <div className='btn text-primary text-center text-decoration-underline fs-4' onClick={()=>setChoice(false)}>Click here to switch your role  </div>
+        <div className='d-flex justify-content-around align-items-center mt-5'>
+        <div className='btn text-primary text-center text-decoration-underline fs-4 me-5' onClick={()=>setChoice(false)}>Click here to switch your role  </div>
         <Link href={'/register/tutor'}> <button className='btn btn-outline-secondary me-5'  >Register</button> </Link>
         <Link href={'/login/tutor'}> <button className='btn btn-outline-secondary' >  Login   </button> </Link> 
+        </div>
         </>
          }
         </div>

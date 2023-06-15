@@ -32,7 +32,7 @@ function index() {
             console.log(error)
             dispatch(loginFailure())
             setError(true)
-            router.push()
+            router.push('/login/student')
         }
 
 

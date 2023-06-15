@@ -18,14 +18,14 @@ const courseSchema = new mongoose.Schema({
         type:[String],
     },
     tutorials:{
-        type:[String],
+        type:[{title:{type:String,required:true},language:{type:String,required:true},url:{type:String,required:true}}],
 
     },
     students:{
         type:[String]
     },
     publications:{
-        type:[{title:{type:String,required:true},fileUrl:{type:String,required:true}}]
+        type:[{title:{type:String,required:true},url:{type:String,required:true}}]
     }
 })
 

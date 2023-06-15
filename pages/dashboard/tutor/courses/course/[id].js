@@ -3,11 +3,14 @@ import Course from '@/components/Course';
 import axios from 'axios'
 import CourseNav from '@/components/CourseNav';
 import { useSelector } from 'react-redux';
-function CourseDetails ({course}) {
+import { TutorDashNav } from '@/components/TutorDashNav';
+import Recommended from '@/components/Recommended';
+function CourseDetails ({course , tutorials}) {
   const {currentUser} = useSelector(state=>state.user)
   return (
     <div>
-    <CourseNav user={currentUser}/>
+    
+    <CourseNav courseId={course._id} user={currentUser}/>
     <section id="four" class="wrapper alt style1">
         <div class="inner">
             <h2 class="major">{course.title}</h2>
@@ -19,6 +22,7 @@ function CourseDetails ({course}) {
         </ul>
         </div>
     </section>
+    <Recommended data={tutorials} courseId={course._id} title={"Videos Tutorials Relevant to this Course"}/>
 </div>
   )
 }
@@ -33,6 +37,7 @@ export const getServerSideProps = async ({params}) => {
         return {
           props:{
             course:await res.data,
+            tutorials:res.data.tutorials
           }
         }
         

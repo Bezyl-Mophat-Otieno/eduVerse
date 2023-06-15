@@ -1,13 +1,13 @@
 import React from 'react'
 import Link from 'next/link'
-import AddNotes from './AddNotes'
+import AddNotes from './AddPublication'
 import { useState } from 'react'
 
 function NotesDropDown({course}) {
   const [close,setClose] = useState(true)
   return (
     <div>
-    { !close && <AddNotes courseId={course_id} setClose={setClose}/>}
+    { !close && <AddNotes courseId={course._id} setClose={setClose}/>}
        <li className="dropdown list-unstyled btn btn-outline-secondary mb-4">
             <Link className="dropdown-toggle" href="#" id="dropDown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
             Notes

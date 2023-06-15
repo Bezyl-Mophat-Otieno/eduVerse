@@ -1,13 +1,15 @@
 import React from 'react'
-import { useSelector } from 'react-redux'
 import { useRouter } from 'next/router'
 import { logout } from '@/redux/userSlice'
 import axios from 'axios'
 import { useDispatch } from 'react-redux'
-import AddCourse from './AddCourse'
+import AddPublication from './AddPublication'
 import { useState } from 'react'
+import Link from 'next/link'
+import AddTutorial from './AddTutorial'
+import AddCourse from './AddCourse'
 
-function CourseNav({user}) {
+function CourseNav({user,courseId}) {
   const router = useRouter()
   const dispatch = useDispatch()
 
@@ -24,12 +26,25 @@ function CourseNav({user}) {
 
   }
 
-  const [close,setClose] = useState(true)
+  const [closeAddPubModal,setCloseAddPubModal] = useState(true)
+  const [closeAddCourseModal , setCloseAddCourseModal] = useState(true)
+  const [closeAddTutorialModal , setcloseAddTutorialModal] = useState(true)
   return (
 <div className=''>
 
-{ !close && <AddCourse user={user} setClose={setClose}/>
+{  
+  !closeAddPubModal && <AddPublication user={user} courseId={courseId} setCloseAddPubModal={setCloseAddPubModal}/>
 }
+
+{
+  !closeAddCourseModal && <AddCourse  user={user} setCloseAddCourseModal={setCloseAddCourseModal}/>
+}
+{
+  !closeAddTutorialModal && <AddTutorial  courseId={courseId} setcloseAddTutorialModal={setcloseAddTutorialModal}/>
+}
+
+
+
 <nav className="navbar navbar-expand-lg navbar-dark " style={{backgroundColor:"#143566"}}>
   <div className="container-fluid">
     <button className="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
@@ -40,11 +55,49 @@ function CourseNav({user}) {
         <li className="nav-item">
           <a className="nav-link " aria-current="page" href="/dashboard/tutor">Dashboard</a>
         </li>
-        <li className="nav-item">
-          <a className="nav-link " aria-current="page" href="#" onClick={()=>setClose(false)} >AddCourse</a>
+        <li className="nav-item dropdown">
+          <Link className="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+            Courses
+          </Link>
+          <ul className="dropdown-menu" aria-labelledby="navbarDropdown">
+            <li><span className="dropdown-item btn"  onClick={()=>setCloseAddCourseModal(false)}>Add Course</span></li>
+            
+            <li><Link className="dropdown-item" href={`/dashboard/tutor/courses/${user?user._id:""}`} >My Courses</Link></li>
+          </ul>
+        </li>
+        <li className="nav-item dropdown">
+          <Link className="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+            Communique'
+          </Link>
+          <ul className="dropdown-menu" aria-labelledby="navbarDropdown">
+            <li><span className="dropdown-item btn" onClick={()=>setClose(false)}>Add Communication</span></li>
+            
+            <li><Link className="dropdown-item" href={`/dashboard/tutor/courses/${user?user._id:""}`} >View Communications</Link></li>
+          </ul>
+        </li>
+        <li className="nav-item dropdown">
+          <Link className="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+            Video Tutorials
+          </Link>
+          <ul className="dropdown-menu" aria-labelledby="navbarDropdown">
+            <li><span className="dropdown-item btn"  onClick={()=>setcloseAddTutorialModal(false)}>Add Tutorial</span></li>
+            
+            <li><Link className="dropdown-item" href={`/dashboard/tutor/courses/${user?user._id:""}`} >View Tutorials</Link></li>
+          </ul>
+          
         </li>
 
-      
+        <li className="nav-item dropdown">
+          <Link className="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+            Publications
+          </Link>
+          <ul className="dropdown-menu" aria-labelledby="navbarDropdown">
+            <li><span className="dropdown-item btn"  onClick={()=>setCloseAddPubModal(false)}>Add Publication</span></li>
+            
+            <li><Link className="dropdown-item" href={`/dashboard/tutor/courses/course/notes/${courseId}`} >View Publications</Link></li>
+          </ul>
+          
+        </li>
 
       </ul>
       {/* <form className="d-flex">

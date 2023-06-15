@@ -3,12 +3,19 @@ import CourseNav from '@/components/CourseNav'
 import axios from 'axios'
 import Course from '@/components/Course'
 import { useSelector } from 'react-redux'
+import TutorDashNav from '@/components/TutorDashNav'
+import AddCourse from '@/components/AddCourse'
+import { useState } from 'react'
 
 function CourseDetails({courses}) {
   const {currentUser} = useSelector(state=>state.user)
+  const[closeAddCourseModal, setCloseAddCourseModal ]=useState(true);
+
   return (
     <div>
-        <CourseNav user={currentUser}/>
+        <TutorDashNav user={currentUser} setCloseAddCourseModal={setCloseAddCourseModal} />
+    { !closeAddCourseModal && <AddCourse user={currentUser} setCloseAddCourseModal={setCloseAddCourseModal}/>}
+
         <section id="four" class="wrapper alt style1">
             <div class="inner">
                 <h2 class="major">My Courses</h2>

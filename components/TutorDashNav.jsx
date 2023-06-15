@@ -5,7 +5,7 @@ import { useDispatch } from 'react-redux'
 import axios from 'axios'
 import { useRouter } from 'next/router'
 
-function TutorDashNav({user,setClose}) {
+function TutorDashNav({user,setCloseAddCourseModal}) {
   const dispatch = useDispatch()
   const router = useRouter()
   const handleLogout = async () => {
@@ -43,7 +43,7 @@ function TutorDashNav({user,setClose}) {
             Courses
           </Link>
           <ul className="dropdown-menu" aria-labelledby="navbarDropdown">
-            <li><Link className="dropdown-item" href="#" onClick={()=>setClose(false)}>Add Course</Link></li>
+            <li><span className="dropdown-item btn" onClick={()=>setCloseAddCourseModal(false)} >Add Course</span></li>
             
             <li><Link className="dropdown-item" href={`/dashboard/tutor/courses/${user?user._id:""}`} >My Courses</Link></li>
           </ul>

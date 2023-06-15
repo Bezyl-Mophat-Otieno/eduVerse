@@ -19,7 +19,7 @@ const {currentUser} = useSelector(state=>state.user)
       <MainNav user={currentUser}/>
       <Banner user={currentUser} />
       <Services/>
-      <Recommended/>
+      {/* <Recommended/> */}
     </div>
     
   );

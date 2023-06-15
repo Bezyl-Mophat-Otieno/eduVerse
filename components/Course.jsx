@@ -16,12 +16,7 @@ function Course({course}) {
     <Link href={`/dashboard/tutor/courses/course/${course._id}`} class="image"><Image src={imageSource} width={300} height={300} alt="" /></Link>
     <h3 class="major">{course.title}</h3>
     <p>{course.desc}</p>
-    <div className={'d-flex justify-content-between'}>
-    <NotesDropDown course={course}/>
-    <CourseUpdateDropDown/>
-    <TutorialsDropDown/>
-    <MoreBtn course={course}/>
-    </div>
+
 </article>
 </>
       

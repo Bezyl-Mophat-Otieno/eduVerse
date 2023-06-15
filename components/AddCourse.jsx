@@ -13,8 +13,10 @@ import {
 } from "firebase/storage";
 
 
-const AddCourse = ({ setClose , user }) => {
+const AddCourse = ({ setCloseAddCourseModal, user }) => {
   const [video, setVideo] = useState(null);
+  const [videoTitle, setVideoTitle] = useState(null);
+  const [videoLanguage,setVideoLanguage] = useState(null)
   const [title, setTitle] = useState(null);
   const [desc, setDesc] = useState(null);
   const [content, setContent] = useState(null)
@@ -22,6 +24,7 @@ const AddCourse = ({ setClose , user }) => {
   const [videoUrl , setVideoUrl] = useState("")
   const [success,setSuccess] = useState(null)
   const [error,setError] = useState(null)
+  const [addTutorial , setAddTutorial] = useState(false)
   const tutor = user._id;
 
   const uploadFile = (file, urlType) => {
@@ -61,10 +64,16 @@ const AddCourse = ({ setClose , user }) => {
     video && uploadFile(video , "videoUrl");
   }, [video]);
 
-
-const tutorials =videoUrl
+// tutorials is assigned an object {title , language , url}
+const tutorials = {
+  title:videoTitle,
+  language:videoLanguage,
+  url:videoUrl
+  
+}
   const handleCreate = async (e)=>{
     e.preventDefault();
+    console.log(tutorials)
     const requestBody = {tutor,title,desc,content,tutorials}
     try {
       const res = await axios.post("http://localhost:3000/api/courses", requestBody)
@@ -78,10 +87,14 @@ const tutorials =videoUrl
     }
  
   }
+    const handleClick = ()=>{
+      setAddTutorial(true)
+    }
+
   return (
     <div className={styles.container} >
       <div className={styles.wrapper}>
-        <span onClick={() => setClose(true)} className={styles.close}>
+        <span onClick={() => setCloseAddCourseModal(true)} className={styles.close}>
           X
         </span>
         
@@ -121,8 +134,39 @@ const tutorials =videoUrl
           />
         </div>
         <div className={styles.item}>
-          <label className={styles.label}>Add Course Tutorials</label>
-          <input type="file" accept='video/*' className={styles.choose} onChange={(e) => setVideo(e.target.files[0])} />
+        {
+          !addTutorial&&<label className={'btn btn-outline-secondary text-center w-50 mt-2'} onClick={handleClick} >Add Course Tutorials</label>
+        }
+
+            {
+
+              addTutorial && (
+                <>
+
+                <div className={styles.item}>
+            <label className={styles.label}>Video Title</label>
+            <input 
+            className={styles.input}
+            type="text"
+            onChange={(e) => setVideoTitle(e.target.value)}
+            />
+            </div>
+            <div className={styles.item}>
+            <label className={styles.label}>Video Language</label>
+            <input 
+            className={styles.input}
+            type="text"
+            onChange={(e) => setVideoLanguage(e.target.value)}
+            />
+            <input type="file" accept='video/*' className={styles.choose} onChange={(e) => setVideo(e.target.files[0])} />
+            </div>
+
+                </>
+              )
+              
+            }
+
+
         </div>
               { video && <button className='btn btn-dark  mb-3' >
               {videoPerc}%
