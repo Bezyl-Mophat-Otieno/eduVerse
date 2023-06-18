@@ -15,35 +15,35 @@ export default async function handler(req, res) {
     if(method === "POST"){
 
         // Set app credentials
-// const credentials = {
-//     apiKey: process.env.AFRICASTALKING_APIKEY,
-//     username: process.env.USERNAME,
-//   }
+const credentials = {
+    apiKey: process.env.AFRICASTALKING_APIKEY,
+    username: process.env.USERNAME,
+  }
   
-//   //Initialize the SDK
-//   AfricasTalking(credentials)
+  //Initialize the SDK
+  AfricasTalking(credentials)
   
-//   //Get the SMS service
-//   const sms = AfricasTalking.SMS
+  //Get the SMS service
+  const sms = AfricasTalking.SMS
 
 
-// // Function that sends the SMS message
-//   const  sendMessage = async(studentNumber, message)=> {
-//     let errors = []
-//     const options = {
-//         //set the numbers you want to send to international format
-//         to: studentNumber,
-//         // Set your message
-//         message: message,
-//         // Set your shortcode or senderID
-//         from: 'eduVerse'
-//     }
-//     return await sms.send(options)
-//   } 
+// Function that sends the SMS message
+  const  sendMessage = async(studentNumber, message)=> {
+    let errors = []
+    const options = {
+        //set the numbers you want to send to international format
+        to: studentNumber,
+        // Set your message
+        message: message,
+        // Set your shortcode or senderID
+        from: 'eduVerse'
+    }
+    return await sms.send(options)
+  } 
   
 
 
-// On Communicatio creation we send a message to the phone numbers registered per course 
+// On Communication creation we send a message to the phone numbers registered per course 
         try {
             const {course,content} = req.body
 
@@ -51,7 +51,7 @@ export default async function handler(req, res) {
             const registeredPhoneNumbers = (await Course.findById(course)).students
             registeredPhoneNumbers.forEach((phoneNumber)=>{
                 
-                // sendMessage(phoneNumber,content)
+                sendMessage(phoneNumber,content)
                 console.log(phoneNumber)
             })
             console.log("communication made successfully")

@@ -8,7 +8,7 @@ export  default async function handler  (req,res){
    await dbConnect()
 
    
-   // Update student information
+   // Update Course information
    if(method === "PUT"){
      try {
 
@@ -18,7 +18,10 @@ export  default async function handler  (req,res){
         
      } catch (error) {
         console.log("An error occured while updating")
-        res.status(500).json(error.message)
+        res.status(500).json(error.messagdata.map(video=>(
+         <VideoCard video={video}/>
+         )) 
+)
      }
     
    }

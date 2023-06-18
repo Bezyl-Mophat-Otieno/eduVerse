@@ -4,6 +4,7 @@ import axios from 'axios'
 import CourseNav from '@/components/CourseNav';
 import { useSelector } from 'react-redux';
 import { TutorDashNav } from '@/components/TutorDashNav';
+import Link from 'next/link';
 import Recommended from '@/components/Recommended';
 function CourseDetails ({course , tutorials}) {
   const {currentUser} = useSelector(state=>state.user)
@@ -16,12 +17,13 @@ function CourseDetails ({course , tutorials}) {
             <h2 class="major">{course.title}</h2>
             <p>{course.content}</p>
 
+
         <ul class="actions">
-                <li><a href="#" class="button btn btn-outline-success">Edit</a></li>
-                <li><a href="#" class="button btn btn-outline-danger">Delete</a></li>
+        <li><Link className="button btn btn-outline-success" href={`/dashboard/tutor/courses/course/notes/${course._id}`} >View Publications</Link></li>
         </ul>
         </div>
     </section>
+  
     <Recommended data={tutorials} courseId={course._id} title={"Videos Tutorials Relevant to this Course"}/>
 </div>
   )

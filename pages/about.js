@@ -1,9 +1,12 @@
 import React from 'react'
 import Link from 'next/link'
+import MainNav from '@/components/MainNav'
 
 function about() {
   return (
     <div>
+    <MainNav/>
+
     
     <section id="four" className="wrapper alt style1">
         <div className="inner">

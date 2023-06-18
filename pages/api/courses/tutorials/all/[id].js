@@ -12,6 +12,8 @@ export  default async function handler  (req,res){
 
    // getting video tutorials   by  the course id
    if(method === "GET"){
+
+
     try {
         const course = await Course.findById(id);
         const videoTutorials = course.tutorials

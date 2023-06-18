@@ -8,6 +8,7 @@ import { useState } from 'react'
 import Link from 'next/link'
 import AddTutorial from './AddTutorial'
 import AddCourse from './AddCourse'
+import AddCommunication from './AddCommunication'
 
 function CourseNav({user,courseId}) {
   const router = useRouter()
@@ -29,6 +30,8 @@ function CourseNav({user,courseId}) {
   const [closeAddPubModal,setCloseAddPubModal] = useState(true)
   const [closeAddCourseModal , setCloseAddCourseModal] = useState(true)
   const [closeAddTutorialModal , setcloseAddTutorialModal] = useState(true)
+  const [closeAddCommsModal,setCloseAddCommsModal] = useState(true)
+  
   return (
 <div className=''>
 
@@ -41,6 +44,10 @@ function CourseNav({user,courseId}) {
 }
 {
   !closeAddTutorialModal && <AddTutorial  courseId={courseId} setcloseAddTutorialModal={setcloseAddTutorialModal}/>
+}
+
+{
+  !closeAddCommsModal && <AddCommunication  courseId={courseId} setCloseAddCommsModal={setCloseAddCommsModal}/>
 }
 
 
@@ -70,7 +77,7 @@ function CourseNav({user,courseId}) {
             Communique'
           </Link>
           <ul className="dropdown-menu" aria-labelledby="navbarDropdown">
-            <li><span className="dropdown-item btn" onClick={()=>setClose(false)}>Add Communication</span></li>
+            <li><span className="dropdown-item btn" onClick={()=>setCloseAddCommsModal(false)}>Add Communication</span></li>
             
             <li><Link className="dropdown-item" href={`/dashboard/tutor/courses/${user?user._id:""}`} >View Communications</Link></li>
           </ul>
